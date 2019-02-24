@@ -7,6 +7,7 @@
  */
 
 package cse360assign2;
+import java.util.ArrayList;
 
 /**
  * Calculator is the class that allows for simple arithmetic operations to 
@@ -15,6 +16,7 @@ package cse360assign2;
  * arithmetic operations. This information includes:
  * <ul>
  * <li> The total value after an arithmetic operation is performed
+ * <li> An array list to hold the history of operands and operators
  * </ul>
  * <p>
  * Operations which perform an addition by adding a user entered value to 
@@ -36,12 +38,14 @@ package cse360assign2;
 public class Calculator {
 	
 private int total;
+private ArrayList<String> operationHistory = new ArrayList<String>();
 	
 	/**
 	 * Class constructor that initializes the total to zero.
 	 */
 	public Calculator () {
 		total = 0;  // not needed - included for clarity
+		operationHistory.add("0");
 	}
 	
 	/**
@@ -54,40 +58,54 @@ private int total;
 	}
 	
 	/**
-	 * Adds the parameter value to the current total
+	 * Adds the parameter value to the current total. This method also appends
+	 * both the corresponding arithmetic operator and parameter value as 
+	 * strings, to an array list.  
 	 * 
 	 * @param value		the value that will be added to the total
 	 */
 	public void add (int value) {
 		
 		total += value;
+		operationHistory.add("+");
+		operationHistory.add(Integer.toString(value));
 		
 	}
 	
 	/**
-	 * Subtracts the parameter value from the current total value
+	 * Subtracts the parameter value from the current total value. This method
+	 * also appends both the corresponding arithmetic operator and parameter 
+	 * value as strings to an array list.
 	 * 
 	 * @param value		the value that will be subtracted from the total
 	 */
 	public void subtract (int value) {
 		
 		total -= value;
+		operationHistory.add("-");
+		operationHistory.add(Integer.toString(value));
 		
 	}
 	
 	/**
-	 * Multiplies the current total by the parameter value
+	 * Multiplies the current total by the parameter value. This method also
+	 * appends both the corresponding arithmetic operator and parameter
+	 * value as strings to an array list.
 	 * 
 	 * @param value		the value that the total will be multiplied by
 	 */
 	public void multiply (int value) {
 		
 		total *= value;
+		operationHistory.add("*");
+		operationHistory.add(Integer.toString(value));
 		
 	}
 	
 	/**
-	 * Divides the current total by the parameter value
+	 * Divides the current total by the parameter value. This method also
+	 * appends both the corresponding arithmetic operator and parameter value
+	 * as strings to an array list.
 	 * 
 	 * @param value		the value that the total will be divided by
 	 */
@@ -102,15 +120,28 @@ private int total;
 			total /= value;
 		}
 		
+		operationHistory.add("/");
+		operationHistory.add(Integer.toString(value));
+		
 	}
 	
 	/**
-	 * Returns a history of all operations as a string
+	 * Returns a history of all operations as a string by iterating through the
+	 * array list and concatenating each element with the history variable.
 	 * 
 	 * @return		all operations that have been performed
 	 */
 	public String getHistory () {
-		return "";
+		
+		String history = "";
+		
+		for(int i = 0; i < operationHistory.size(); i++)
+		{
+			history += operationHistory.get(i);
+			history += " ";
+		}
+		
+		return history;
 	}
 
 }
