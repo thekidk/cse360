@@ -47,10 +47,10 @@ private int total;
 	/**
 	 * Returns the current total
 	 * 
-	 * @return total
+	 * @return total	the value that will be returned
 	 */
 	public int getTotal () {
-		return 0;
+		return total;
 	}
 	
 	/**
@@ -59,6 +59,9 @@ private int total;
 	 * @param value		the value that will be added to the total
 	 */
 	public void add (int value) {
+		
+		total += value;
+		
 	}
 	
 	/**
@@ -67,6 +70,8 @@ private int total;
 	 * @param value		the value that will be subtracted from the total
 	 */
 	public void subtract (int value) {
+		
+		total -= value;
 		
 	}
 	
@@ -77,6 +82,8 @@ private int total;
 	 */
 	public void multiply (int value) {
 		
+		total *= value;
+		
 	}
 	
 	/**
@@ -85,6 +92,15 @@ private int total;
 	 * @param value		the value that the total will be divided by
 	 */
 	public void divide (int value) {
+		
+		if ( value == 0)
+		{
+			total = 0;
+		}
+		else
+		{
+			total /= value;
+		}
 		
 	}
 	
